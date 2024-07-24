@@ -1,0 +1,556 @@
+body, html {
+    margin: 0;
+    padding: 0;
+	font-family: Arial, sans-serif;
+    overflow-x: hidden;
+	background-color: #000000;
+	background-image: radial-gradient(#2a2a2a 1.25px, #000000 1.25px);
+	background-size: 15px 15px;
+	
+}
+
+/* ------------------------ */
+
+
+
+.menu-button {
+    display: none; /* Oculta el botón de menú por defecto */
+}
+
+.button-container {
+	position: fixed;
+    
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Asegura que el menú esté en la parte superior */
+    width: 100%;
+	border-bottom: 2px solid #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    margin-top: 0px;
+	background-color: #000000;
+background-color: #000000;
+opacity: 1;
+background-image: radial-gradient(#00FF00 0.75px, #000000 0.75px);
+background-size: 15px 15px;
+	
+}
+
+.nav-button {
+    background-color: #00ff00;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    margin: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+	
+}
+
+.nav-button:hover {
+    background-color: #999999;
+    color: black;
+	
+}
+
+@media (max-width: 767px) {
+    .nav-button {
+        display: none; /* Oculta los botones individuales en pantallas verticales */
+    }
+
+    .menu-button {
+        display: block; /* Muestra el botón de menú en pantallas verticales */
+        background-color: #00ff00;
+        border: none;
+        color: black;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        
+    }
+
+    .menu-button:hover {
+        background-color: #999999;
+        color: black;
+    }
+
+    .button-container.open .nav-button {
+        display: block; /* Muestra los botones cuando se hace clic en el botón de menú */
+    }
+}
+
+
+/* ------------------------ */
+
+
+.video-banner {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background-color: black;
+   border-bottom: 2px solid #00ff00;
+    
+    margin-top: 40px; /* Agregamos un margen superior al contenedor del video */
+	
+}
+
+.video-large, .video-small {
+    width: 100%;
+    height: auto;
+    display: none;
+	
+}
+
+.video-large {
+    display: block;
+	
+}
+
+@media (max-width: 767px) {
+    .video-large {
+        display: none;
+    }
+    .video-small {
+        display: block;
+    }
+}
+
+
+/* ------------------------ */
+
+
+.logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 70%; /* Aumenta el tamaño máximo del logo */
+    max-height: 70%; /* Aumenta el tamaño máximo del logo */
+    width: auto;
+    height: auto;
+	filter: drop-shadow(0 0 10px white);
+}
+
+
+/* ------------------------ */
+
+
+.text-box {	
+	
+    color: white; /* Texto en blanco */
+    padding: 5px 20px; /* Aumenta el margen interno */
+    border-radius: 5px; /* Redondea los bordes */
+    text-align: center; /* Centra el contenido */
+    margin: 10px auto; 
+	/* Centra horizontalmente en la página y agrega margen superior e inferior */
+    max-width: 46%; /* Limita el ancho del contenedor para que no se extienda demasiado */
+}
+
+.text-box p {
+    margin: 10px 0; /* Espaciado entre párrafos */
+    font-size: 35px; /* Tamaño del texto */
+	font-weight: bold;
+}
+
+.text-box2 {	
+	
+    color: black; /* Texto en blanco */
+    padding: 15px 20px; /* Aumenta el margen interno */
+    border-radius: 5px; /* Redondea los bordes */
+    text-align: center; /* Centra el contenido */
+    margin: 10px auto; 
+	/* Centra horizontalmente en la página y agrega margen superior e inferior */
+    max-width: 46%; /* Limita el ancho del contenedor para que no se extienda demasiado */
+
+}
+
+.text-box2 p {
+    margin: 10px 0; /* Espaciado entre párrafos */
+    font-size: 35px; /* Tamaño del texto */
+	font-weight: bold;
+}
+
+
+
+
+/* ------------------------ */
+
+
+
+
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 25px;
+    padding: 20px;
+	
+}
+
+.gallery2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 20px;
+}
+
+
+.gallery3 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px;
+    padding: 20px;
+}
+
+.image {
+    overflow: hidden;
+  
+}
+
+.image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;	
+	/*filter: grayscale(100%);	*/
+
+}
+
+.image:hover img {
+    transform: scale(1.1);
+	filter: grayscale(0%);
+}
+
+@media (min-width: 768px) {
+    .gallery {
+        margin: 0 auto; /* Centra el contenedor */
+        max-width: 1500px; /* Establece un ancho máximo */
+    }
+}
+
+@media (min-width: 768px) {
+    .gallery2 {
+        margin: 0 auto; /* Centra el contenedor */
+        max-width: 1500px; /* Establece un ancho máximo */
+    }
+}
+
+@media (min-width: 768px) {
+    .gallery3 {
+        margin: 0 auto; /* Centra el contenedor */
+        max-width: 1500px; /* Establece un ancho máximo */
+    }
+}
+
+@media (max-width: 767px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* Mostrar 2 imágenes por fila en dispositivos móviles */
+    }
+}
+
+@media (max-width: 767px) {
+    .gallery2 {
+        grid-template-columns: repeat(1, 1fr); /* Mostrar 2 imágenes por fila en dispositivos móviles */
+    }
+}
+
+@media (max-width: 767px) {
+    .gallery3 {
+        grid-template-columns: repeat(2, 1fr); /* Mostrar 2 imágenes por fila en dispositivos móviles */
+    }
+}
+
+
+
+/* ------------------------ */
+
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.team-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    
+}
+
+.person {
+    text-align: center;
+    margin: 20px;
+}
+
+.person img {
+    width: 250px;
+    height: 250px;
+    
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.person h2 {
+    font-size: 25px;
+    margin: 10px 0 5px;
+	color: #000000;
+}
+
+.person p {
+    font-size: 15px;
+    color: #000000;
+}
+
+/* Media Query para pantallas más pequeñas */
+@media (max-width: 767px) {
+    .team-section {
+        flex-direction: column; /* Hace que los elementos se apilen verticalmente */
+        align-items: center; 
+		/* Centra los elementos en el contenedor */
+    }
+}
+
+
+@media (min-width: 768px) {
+    .team-section {
+        margin: 0 auto; /* Centra el contenedor */
+        max-width: 1500px; /* Establece un ancho máximo */
+    }
+}
+
+
+
+/* ------------------------ */
+
+
+.segundo-contenido {
+
+	background-image: radial-gradient(#00d200 1.25px, #00FF00 1.25px);
+	background-size: 15px 15px;   
+    
+	
+}
+
+/* ------------------------ */
+
+
+#slideshow {
+	margin: 0 auto;
+	padding-top: 5px;
+	height: 600px;
+	width: 100%;
+	
+}
+
+
+
+
+.entire-content {
+	margin: auto;
+	width: 190px;
+	perspective: 1000px;
+	position: relative;
+	padding-top: 80px;
+}
+
+.content-carrousel {
+	width: 100%;
+	position: absolute;
+	float: right;
+	animation: rotar 15s infinite linear;
+	transform-style: preserve-3d;
+	
+}
+
+
+
+.content-carrousel figure {
+
+	
+	
+	position: absolute;
+
+	display: flex;
+ 
+  margin: 0 auto;
+
+
+
+	
+}
+
+.content-carrousel figure:nth-child(1) {
+	transform: rotateY(0deg) translateZ(300px); 
+} .content-carrousel figure:nth-child(2) {
+	transform: rotateY(40deg) translateZ(300px); 
+} .content-carrousel figure:nth-child(3) {
+	transform: rotateY(80deg) translateZ(300px); 
+} .content-carrousel figure:nth-child(4) {
+	transform: rotateY(120deg) translateZ(300px); 
+} .content-carrousel figure:nth-child(5) {
+	transform: rotateY(160deg) translateZ(300px); 
+} .content-carrousel figure:nth-child(6) {
+	transform: rotateY(200deg) translateZ(300px); 
+} .content-carrousel figure:nth-child(7) {
+	transform: rotateY(240deg) translateZ(300px); 
+} .content-carrousel figure:nth-child(8) {
+	transform: rotateY(280deg) translateZ(300px); 
+} .content-carrousel figure:nth-child(9) {
+	transform: rotateY(320deg) translateZ(300px); 
+} .content-carrousel figure:nth-child(10) {
+	transform: rotateY(360deg) translateZ(300px); 
+} 
+
+
+
+
+
+.content-carrousel img:hover {
+	transform: scale(1.2);
+	transition: all 300ms;
+}
+
+@keyframes rotar {
+	from {
+		transform: rotateY(0deg);
+	} to {
+		transform: rotateY(360deg);
+	}
+}
+
+
+/*________________________*/
+
+
+.separator {
+    border: 1px solid #00ff00;
+   
+}
+
+/*________________________*/
+
+
+.contact-section {
+
+    color: #000000;
+    text-align: center;
+
+}
+
+.contact-section h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.contact-section p {
+    margin: 5px 0;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-section p i {
+    margin-right: 20px; /* Añade margen derecho al ícono */
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-person {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background-color: #111;
+    width: 250px;
+}
+
+.contact-person h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.contact-person p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-person p i {
+    margin-right: 10px; /* Añade margen derecho al ícono */
+}
+
+.whatsapp-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 5px;
+    color: #000000;
+
+    border: none;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-button:hover {
+    background-color: #ffffff;
+}
+
+.whatsapp-button i {
+    margin-right: 50px; /* Añade margen derecho al ícono */
+}
+
+
+/*__________________*/
+
+
+.clients-carousel {
+
+    color: black;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.clients-carousel h2 {
+    margin-bottom: 20px;
+}
+
+.clients-carousel .carousel {
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+.clients-carousel .carousel img {
+    width: 100px;
+    height: auto;
+}
+
+/*__________________*/
+
+
+.linea {
+  border-top: 1px solid black;
+  height: 2px;
+  max-width: 500px;
+  padding: 0;
+  margin: 20px auto 20px auto;
+}
