@@ -13,27 +13,21 @@ $(document).ready(function(){
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true,
-                    variableWidth: true,
-                    centerMode: true
+                    dots: true
                 }
             },
             {
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 1,
-                    variableWidth: true,
-                    centerMode: true
+                    slidesToScroll: 1
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1,
-                    variableWidth: true,
-                    centerMode: true
+                    slidesToScroll: 1
                 }
             }
         ]
@@ -98,31 +92,30 @@ $(document).ready(function(){
 
 
 
-    document.addEventListener("DOMContentLoaded", function() {
-        let lazyVideos = [...document.querySelectorAll("video.lazy")]
-       
-        if ("IntersectionObserver" in window) {
-          let lazyVideoObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(video) {
-              if (video.isIntersecting) {
-                for (let source in video.target.children) {
-                  let videoSource = video.target.children[source];
-                  if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-                    videoSource.src = videoSource.dataset.src;
-                  }
-                }
-       
-                video.target.load();
-                video.target.classList.remove("lazy");
-                lazyVideoObserver.unobserve(video.target);
-              }
-            });
-           });
-       
-       
-          lazyVideos.forEach(function(lazyVideo) {
-            lazyVideoObserver.observe(lazyVideo);
-          });
-        }
-       });
-       
+document.addEventListener("DOMContentLoaded", function() {
+ let lazyVideos = [...document.querySelectorAll("video.lazy")]
+
+ if ("IntersectionObserver" in window) {
+   let lazyVideoObserver = new IntersectionObserver(function(entries) {
+     entries.forEach(function(video) {
+       if (video.isIntersecting) {
+         for (let source in video.target.children) {
+           let videoSource = video.target.children[source];
+           if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+             videoSource.src = videoSource.dataset.src;
+           }
+         }
+
+         video.target.load();
+         video.target.classList.remove("lazy");
+         lazyVideoObserver.unobserve(video.target);
+       }
+     });
+    });
+
+
+   lazyVideos.forEach(function(lazyVideo) {
+     lazyVideoObserver.observe(lazyVideo);
+   });
+ }
+});
