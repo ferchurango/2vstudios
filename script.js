@@ -96,30 +96,48 @@ $(document).ready(function(){
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
- let lazyVideos = [...document.querySelectorAll("video.lazy")]
-
- if ("IntersectionObserver" in window) {
-   let lazyVideoObserver = new IntersectionObserver(function(entries) {
-     entries.forEach(function(video) {
-       if (video.isIntersecting) {
-         for (let source in video.target.children) {
-           let videoSource = video.target.children[source];
-           if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-             videoSource.src = videoSource.dataset.src;
-           }
-         }
-
-         video.target.load();
-         video.target.classList.remove("lazy");
-         lazyVideoObserver.unobserve(video.target);
-       }
-     });
+    document.addEventListener('DOMContentLoaded', function() {
+        const videos = document.querySelectorAll('.lazy');
+    
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const video = entry.target;
+                    const source = video.querySelector('source');
+                    const progressCircle = video.closest('.video-item').querySelector('.progress-circle');
+    
+                    if (source.getAttribute('data-src')) {
+                        source.src = source.getAttribute('data-src');
+                        video.load();
+                        observer.unobserve(video);
+                    }
+    
+                    // Mostrar la barra de progreso
+                    progressCircle.style.opacity = 1;
+    
+                    video.addEventListener('progress', () => {
+                        if (video.buffered.length > 0) {
+                            const bufferedEnd = video.buffered.end(video.buffered.length - 1);
+                            const duration = video.duration;
+                            if (duration > 0) {
+                                const percentage = (bufferedEnd / duration) * 100;
+                                if (percentage >= 10) { // Umbral para comenzar a reproducir (10% buffer)
+                                    video.play();
+                                    progressCircle.style.opacity = 0; // Ocultar la barra de progreso cuando comienza la reproducción
+                                }
+                            }
+                        }
+                    });
+    
+                    video.addEventListener('canplaythrough', () => {
+                        progressCircle.style.opacity = 0;
+                    });
+                }
+            });
+        }, { threshold: 0.25 });
+    
+        videos.forEach(video => {
+            observer.observe(video);
+        });
     });
-
-
-   lazyVideos.forEach(function(lazyVideo) {
-     lazyVideoObserver.observe(lazyVideo);
-   });
- }
-});
+    
