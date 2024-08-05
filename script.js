@@ -93,9 +93,6 @@ $(document).ready(function(){
         menuButton.style.display = 'none'; // Oculta el botón MENÚ una vez que se hace clic en él
     });
 
-
-
-
     document.addEventListener('DOMContentLoaded', function() {
         const videos = document.querySelectorAll('.lazy');
     
@@ -112,24 +109,35 @@ $(document).ready(function(){
                         observer.unobserve(video);
                     }
     
+                    // Mostrar la barra de progreso
                     progressCircle.style.opacity = 1;
     
-                    video.addEventListener('progress', () => {
+                    const checkBuffer = () => {
                         if (video.buffered.length > 0) {
                             const bufferedEnd = video.buffered.end(video.buffered.length - 1);
                             const duration = video.duration;
                             if (duration > 0) {
                                 const percentage = (bufferedEnd / duration) * 100;
-                                if (percentage >= 3) {
+                                if (percentage >= 10) { // Umbral para comenzar a reproducir (10% buffer)
                                     video.play();
-                                    progressCircle.style.opacity = 0;
+                                    progressCircle.style.opacity = 0; // Ocultar la barra de progreso cuando comienza la reproducción
+                                    clearInterval(bufferCheckInterval);
                                 }
                             }
                         }
-                    });
+                    };
+    
+                    // Verificar el buffer cada 500ms hasta que el video comience a reproducirse
+                    const bufferCheckInterval = setInterval(checkBuffer, 500);
     
                     video.addEventListener('canplaythrough', () => {
                         progressCircle.style.opacity = 0;
+                        clearInterval(bufferCheckInterval);
+                    });
+    
+                    video.addEventListener('error', () => {
+                        progressCircle.style.opacity = 0;
+                        console.error('Error loading video:', video.currentSrc);
                     });
                 }
             });
