@@ -89,3 +89,25 @@ $(document).ready(function(){
         menuButton.style.display = 'none'; // Oculta el botón MENÚ una vez que se hace clic en él
     });
 
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+            const videos = document.querySelectorAll('video');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play();
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, {
+                threshold: 0.5 // Ajusta este valor según tus necesidades
+            });
+
+            videos.forEach(video => {
+                observer.observe(video);
+            });
+        });
