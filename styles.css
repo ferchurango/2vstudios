@@ -560,6 +560,7 @@ body, html {
         .video-item {
             width: 100%; /* Puedes ajustar este valor según tus necesidades */
             margin: 10px;
+            position: relative;
         }
         video {
             width: 100%;
@@ -572,10 +573,10 @@ body, html {
             left: 50%;
             width: 50px;
             height: 50px;
-            margin-top: -25px; /* Negative half of the height to center vertically */
-            margin-left: -25px; /* Negative half of the width to center horizontally */
+            margin-top: -25px;
+            margin-left: -25px;
             border: 6px solid rgba(255, 255, 0, 0.3);
-            border-top: 6px solid yellow;
+            border-top: 6px solid 00ff00;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             opacity: 1;
