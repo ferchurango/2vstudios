@@ -112,7 +112,6 @@ $(document).ready(function(){
                         observer.unobserve(video);
                     }
     
-                    // Mostrar la barra de progreso
                     progressCircle.style.opacity = 1;
     
                     video.addEventListener('progress', () => {
@@ -121,9 +120,9 @@ $(document).ready(function(){
                             const duration = video.duration;
                             if (duration > 0) {
                                 const percentage = (bufferedEnd / duration) * 100;
-                                if (percentage >= 10) { // Umbral para comenzar a reproducir (10% buffer)
+                                if (percentage >= 3) {
                                     video.play();
-                                    progressCircle.style.opacity = 0; // Ocultar la barra de progreso cuando comienza la reproducción
+                                    progressCircle.style.opacity = 0;
                                 }
                             }
                         }
