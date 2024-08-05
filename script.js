@@ -130,7 +130,13 @@ $(document).ready(function(){
                     // Verificar el buffer cada 500ms hasta que el video comience a reproducirse
                     const bufferCheckInterval = setInterval(checkBuffer, 500);
     
-                    video.addEventListener('canplaythrough', () => {
+                    video.addEventListener('canplay', () => {
+                        // Reproducir automáticamente cuando puede reproducirse
+                        video.play();
+                    });
+    
+                    video.addEventListener('playing', () => {
+                        // Ocultar la barra de progreso cuando el video está reproduciéndose
                         progressCircle.style.opacity = 0;
                         clearInterval(bufferCheckInterval);
                     });
@@ -138,7 +144,16 @@ $(document).ready(function(){
                     video.addEventListener('error', () => {
                         progressCircle.style.opacity = 0;
                         console.error('Error loading video:', video.currentSrc);
+                        clearInterval(bufferCheckInterval);
                     });
+    
+                    video.addEventListener('ended', () => {
+                        video.currentTime = 0; // Reset video to the beginning
+                        video.play(); // Play again for looping effect
+                    });
+    
+                    video.muted = true; // Mute the video
+                    video.loop = true; // Loop the video
                 }
             });
         }, { threshold: 0.25 });
@@ -147,4 +162,4 @@ $(document).ready(function(){
             observer.observe(video);
         });
     });
-    
+        
