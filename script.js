@@ -92,22 +92,31 @@ $(document).ready(function(){
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-            const videos = document.querySelectorAll('video');
-
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.play();
-                    } else {
-                        entry.target.pause();
-                    }
-                });
-            }, {
-                threshold: 0.5 // Ajusta este valor según tus necesidades
+    document.addEventListener("DOMContentLoaded", function() {
+        let lazyVideos = [...document.querySelectorAll("video.lazy")]
+       
+        if ("IntersectionObserver" in window) {
+          let lazyVideoObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(video) {
+              if (video.isIntersecting) {
+                for (let source in video.target.children) {
+                  let videoSource = video.target.children[source];
+                  if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+                    videoSource.src = videoSource.dataset.src;
+                  }
+                }
+       
+                video.target.load();
+                video.target.classList.remove("lazy");
+                lazyVideoObserver.unobserve(video.target);
+              }
             });
-
-            videos.forEach(video => {
-                observer.observe(video);
-            });
-        });
+           });
+       
+       
+          lazyVideos.forEach(function(lazyVideo) {
+            lazyVideoObserver.observe(lazyVideo);
+          });
+        }
+       });
+       
