@@ -536,6 +536,7 @@ body, html {
 .clients-carousel .carousel img {
     width: 100px;
     height: auto;
+    margin: auto;
 }
 
 /*__________________*/

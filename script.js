@@ -20,14 +20,18 @@ $(document).ready(function(){
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    centerMode: true,
+                    centerPadding: '0px'
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1
+                    slidesToScroll: 1,
+                    centerMode: true,
+                    centerPadding: '0px'
                 }
             }
         ]
