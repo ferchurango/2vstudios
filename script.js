@@ -94,84 +94,32 @@ $(document).ready(function(){
     });
 
 
-//video lazy load
-document.addEventListener('DOMContentLoaded', function() {
-    const videos = document.querySelectorAll('.lazy');
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const video = entry.target;
-                const source = video.querySelector('source');
-                const progressCircle = video.closest('.video-item').querySelector('.progress-circle');
 
-                if (source.getAttribute('data-src')) {
-                    // Cache video source
-                    caches.open('video-cache').then(cache => {
-                        cache.match(source.getAttribute('data-src')).then(response => {
-                            if (!response) {
-                                cache.add(source.getAttribute('data-src'));
-                            }
-                        });
-                    });
+document.addEventListener("DOMContentLoaded", function() {
+ let lazyVideos = [...document.querySelectorAll("video.lazy")]
 
-                    source.src = source.getAttribute('data-src');
-                    video.load();
-                    observer.unobserve(video);
-                }
+ if ("IntersectionObserver" in window) {
+   let lazyVideoObserver = new IntersectionObserver(function(entries) {
+     entries.forEach(function(video) {
+       if (video.isIntersecting) {
+         for (let source in video.target.children) {
+           let videoSource = video.target.children[source];
+           if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
+             videoSource.src = videoSource.dataset.src;
+           }
+         }
 
-                // Mostrar la barra de progreso
-                progressCircle.style.opacity = 1;
-
-                const checkBuffer = () => {
-                    if (video.buffered.length > 0) {
-                        const bufferedEnd = video.buffered.end(video.buffered.length - 1);
-                        const duration = video.duration;
-                        if (duration > 0) {
-                            const percentage = (bufferedEnd / duration) * 100;
-                            if (percentage >= 10) { // Umbral para comenzar a reproducir (10% buffer)
-                                video.play();
-                                progressCircle.style.opacity = 0; // Ocultar la barra de progreso cuando comienza la reproducción
-                                clearInterval(bufferCheckInterval);
-                            }
-                        }
-                    }
-                };
-
-                // Verificar el buffer cada 500ms hasta que el video comience a reproducirse
-                const bufferCheckInterval = setInterval(checkBuffer, 500);
-
-                video.addEventListener('canplay', () => {
-                    // Reproducir automáticamente cuando puede reproducirse
-                    video.play();
-                });
-
-                video.addEventListener('playing', () => {
-                    // Ocultar la barra de progreso cuando el video está reproduciéndose
-                    progressCircle.style.opacity = 0;
-                    clearInterval(bufferCheckInterval);
-                });
-
-                video.addEventListener('error', () => {
-                    progressCircle.style.opacity = 0;
-                    console.error('Error loading video:', video.currentSrc);
-                    clearInterval(bufferCheckInterval);
-                });
-
-                video.addEventListener('ended', () => {
-                    video.currentTime = 0; // Reset video to the beginning
-                    video.play(); // Play again for looping effect
-                    video.pause(); // Pause to prevent continuous buffering
-                    video.load(); // Reload to clear buffer
-                });
-
-                video.muted = true; // Mute the video
-                video.loop = true; // Loop the video
-            }
-        });
-    }, { threshold: 0.25 });
-
-    videos.forEach(video => {
-        observer.observe(video);
+         video.target.load();
+         video.target.classList.remove("lazy");
+         lazyVideoObserver.unobserve(video.target);
+       }
+     });
     });
+
+
+   lazyVideos.forEach(function(lazyVideo) {
+     lazyVideoObserver.observe(lazyVideo);
+   });
+ }
 });
