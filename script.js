@@ -85,42 +85,13 @@ $(document).ready(function(){
 
 
 
-    
-    const menuButton = document.querySelector('.menu-button');
-    const buttonContainer = document.querySelector('.button-container');
 
-    menuButton.addEventListener('click', () => {
-        buttonContainer.classList.toggle('open');
-        menuButton.style.display = 'none'; // Oculta el botón MENÚ una vez que se hace clic en él
+
+document.addEventListener("DOMContentLoaded", function() {
+    var lazyLoadInstance = new LazyLoad({
+        elements_selector: ".lazy"
     });
-
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-            const videos = document.querySelectorAll('video');
-
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.play();
-                    } else {
-                        entry.target.pause();
-                    }
-                });
-            }, {
-                threshold: 0.5 // Ajusta este valor según tus necesidades
-            });
-
-            videos.forEach(video => {
-                observer.observe(video);
-            });
-        });
-
-
-
-
-
+});
 
 
 
