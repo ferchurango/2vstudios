@@ -20,18 +20,14 @@ $(document).ready(function(){
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 1,
-                    centerMode: true,
-                    centerPadding: '0px'
+                    slidesToScroll: 1
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 1,
-                    slidesToScroll: 1,
-                    centerMode: true,
-                    centerPadding: '0px'
+                    slidesToScroll: 1
                 }
             }
         ]
@@ -84,6 +80,11 @@ $(document).ready(function(){
 
 
 
+
+
+
+
+
     
     const menuButton = document.querySelector('.menu-button');
     const buttonContainer = document.querySelector('.button-container');
@@ -96,30 +97,31 @@ $(document).ready(function(){
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
- let lazyVideos = [...document.querySelectorAll("video.lazy")]
+document.addEventListener('DOMContentLoaded', function () {
+            const videos = document.querySelectorAll('video');
 
- if ("IntersectionObserver" in window) {
-   let lazyVideoObserver = new IntersectionObserver(function(entries) {
-     entries.forEach(function(video) {
-       if (video.isIntersecting) {
-         for (let source in video.target.children) {
-           let videoSource = video.target.children[source];
-           if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-             videoSource.src = videoSource.dataset.src;
-           }
-         }
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.play();
+                    } else {
+                        entry.target.pause();
+                    }
+                });
+            }, {
+                threshold: 0.5 // Ajusta este valor según tus necesidades
+            });
 
-         video.target.load();
-         video.target.classList.remove("lazy");
-         lazyVideoObserver.unobserve(video.target);
-       }
-     });
-    });
+            videos.forEach(video => {
+                observer.observe(video);
+            });
+        });
 
 
-   lazyVideos.forEach(function(lazyVideo) {
-     lazyVideoObserver.observe(lazyVideo);
-   });
- }
-});
+
+
+
+
+
+
+

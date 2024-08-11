@@ -536,7 +536,6 @@ body, html {
 .clients-carousel .carousel img {
     width: 100px;
     height: auto;
-    margin: auto;
 }
 
 /*__________________*/
@@ -565,3 +564,28 @@ body, html {
             width: 100%;
             height: auto;
         }
+
+/*__________________*/
+
+
+ .QRCODE {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    margin: 0 auto; /* Centra la imagen si no se usa flexbox */
+    max-width: 100%; /* Asegura que no exceda el ancho del contenedor */
+}
+
+.QRCODE img {
+    max-width: 100%; /* Asegura que la imagen sea responsive */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+@media (max-width: 768px) {
+    .QRCODE {
+        padding: 5px; /* Añade algo de espacio en pantallas pequeñas */
+    }
+    .QRCODE img {
+        width: 100%; /* Ajusta el tamaño de la imagen en móviles */
+    }
+}
