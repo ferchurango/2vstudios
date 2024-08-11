@@ -97,39 +97,6 @@ $(document).ready(function(){
 
 
 
- document.addEventListener('DOMContentLoaded', function () {
-            const videos = document.querySelectorAll('video');
-
-            const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    const video = entry.target;
-                    const fallbackImage = video.nextElementSibling;
-                    if (entry.isIntersecting) {
-                        if (!video.querySelector('source')) {
-                            const src = video.getAttribute('data-src');
-                            video.innerHTML = `<source src="${src}" type="video/mp4">`;
-                            video.load();
-                        }
-                        video.play();
-                        fallbackImage.style.display = 'none';
-                    } else {
-                        video.pause();
-                        fallbackImage.style.display = 'block';
-                    }
-                });
-            }, {
-                threshold: 0.5 // Ajusta este valor según tus necesidades
-            });
-
-            videos.forEach(video => {
-                observer.observe(video);
-                video.addEventListener('error', () => {
-                    video.style.display = 'none';
-                    video.nextElementSibling.style.display = 'block';
-                });
-            });
-        });
-
 
 
 
