@@ -97,15 +97,24 @@ $(document).ready(function(){
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
             const videos = document.querySelectorAll('video');
 
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
+                    const video = entry.target;
+                    const fallbackImage = video.nextElementSibling;
                     if (entry.isIntersecting) {
-                        entry.target.play();
+                        if (!video.querySelector('source')) {
+                            const src = video.getAttribute('data-src');
+                            video.innerHTML = `<source src="${src}" type="video/mp4">`;
+                            video.load();
+                        }
+                        video.play();
+                        fallbackImage.style.display = 'none';
                     } else {
-                        entry.target.pause();
+                        video.pause();
+                        fallbackImage.style.display = 'block';
                     }
                 });
             }, {
@@ -114,6 +123,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             videos.forEach(video => {
                 observer.observe(video);
+                video.addEventListener('error', () => {
+                    video.style.display = 'none';
+                    video.nextElementSibling.style.display = 'block';
+                });
             });
         });
 
