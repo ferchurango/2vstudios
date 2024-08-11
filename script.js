@@ -110,3 +110,31 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Selecciona todos los elementos de video
+    const videos = document.querySelectorAll('video');
+
+    // Función que se llama cuando la visibilidad del video cambia
+    const handleIntersection = (entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+            if (entry.isIntersecting) {
+                // El video está en el viewport
+                video.play();
+            } else {
+                // El video no está en el viewport
+                video.pause();
+            }
+        });
+    };
+
+    // Crear un Intersection Observer
+    const observer = new IntersectionObserver(handleIntersection, {
+        threshold: 0.5 // Ajusta según la proporción del video visible
+    });
+
+    // Observa todos los elementos de video
+    videos.forEach(video => {
+        observer.observe(video);
+    });
+});
