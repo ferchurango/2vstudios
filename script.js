@@ -85,6 +85,21 @@ $(document).ready(function(){
 
 
 
+    
+    const menuButton = document.querySelector('.menu-button');
+    const buttonContainer = document.querySelector('.button-container');
+
+    menuButton.addEventListener('click', () => {
+        buttonContainer.classList.toggle('open');
+        menuButton.style.display = 'none'; // Oculta el botón MENÚ una vez que se hace clic en él
+    });
+
+
+
+
+
+
+
 
 
 
