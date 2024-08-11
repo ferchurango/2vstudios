@@ -85,46 +85,6 @@ $(document).ready(function(){
 
 
 
-    
-    const menuButton = document.querySelector('.menu-button');
-    const buttonContainer = document.querySelector('.button-container');
-
-    menuButton.addEventListener('click', () => {
-        buttonContainer.classList.toggle('open');
-        menuButton.style.display = 'none'; // Oculta el botón MENÚ una vez que se hace clic en él
-    });
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    let lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
-    if ("IntersectionObserver" in window) {
-        let lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(function(video) {
-                if (video.isIntersecting) {
-                    for (let source in video.target.children) {
-                        let videoSource = video.target.children[source];
-                        if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-                            videoSource.src = videoSource.dataset.src;
-                        }
-                    }
-                    video.target.load();
-                    video.target.classList.remove("lazy");
-                    lazyVideoObserver.unobserve(video.target);
-                }
-            });
-        });
-        lazyVideos.forEach(function(lazyVideo) {
-            lazyVideoObserver.observe(lazyVideo);
-        });
-    }
-});
-
-
-
 
 
 
