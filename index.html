@@ -199,6 +199,22 @@
         // Carga diferida de videos solo cuando son visibles
         lazyLoadVideos();
     });
+	
+	document.addEventListener("DOMContentLoaded", function () {
+    const videos = document.querySelectorAll("video");
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.play();
+            } else {
+                entry.target.pause();
+            }
+        });
+    }, { threshold: 0.5 }); // Se activa cuando al menos el 50% del video está visible
+
+    videos.forEach(video => observer.observe(video));
+});
 </script>
 
 </body>
