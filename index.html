@@ -90,7 +90,7 @@
             <div class="swiper-wrapper">
                 <script>
                     for (let i = 1; i <= 13; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/VERTICAL/VFX (${i}).mp4" autoplay loop muted></video></div>`);
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/VERTICAL/VFX (${i}).mp4" poster="IMG/VFX/VERTICAL/VFX (${i}).jpg" autoplay loop muted></video></div>`);
                     }
                 </script>
             </div>
@@ -100,7 +100,7 @@
             <div class="swiper-wrapper">
                 <script>
                     for (let i = 1; i <= 8; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/CUADRADO/VFX (${i}).mp4" autoplay loop muted></video></div>`);
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/CUADRADO/VFX (${i}).mp4" poster="IMG/VFX/CUADRADO/VFX (${i}).jpg" autoplay loop muted></video></div>`);
                     }
                 </script>
             </div>
@@ -215,6 +215,11 @@
 
     videos.forEach(video => observer.observe(video));
 });
+	
+	
+	
+	
+	
 </script>
 
 </body>
