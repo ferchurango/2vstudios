@@ -100,7 +100,7 @@ background-size: 15px 15px;
     background-color: black;
    border-bottom: 2px solid #00ff00;
     
-    margin-top: 40px; /* Agregamos un margen superior al contenedor del video */
+   
 	
 }
 
@@ -168,7 +168,7 @@ background-size: 15px 15px;
     padding: 15px 20px; /* Aumenta el margen interno */
     border-radius: 5px; /* Redondea los bordes */
     text-align: center; /* Centra el contenido */
-    margin: 10px auto; 
+    margin: 0px auto; 
 	/* Centra horizontalmente en la página y agrega margen superior e inferior */
     max-width: 46%; /* Limita el ancho del contenedor para que no se extienda demasiado */
 

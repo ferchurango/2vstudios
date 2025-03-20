@@ -1,407 +1,141 @@
 <!DOCTYPE html>
 <html lang="es">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>POSTPRODUCCIÓN</title>
-      <link rel="stylesheet" href="styles.css">
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Videos</title>
 
-   </head>
-   <body>
-      <div class="button-container">
-         <button class="nav-button">VFX</button>
-         <button class="nav-button">ANIMACIÓN</button>
-         <button class="nav-button">TV</button>
-         <button class="nav-button">CONTACTO</button>
-         <button class="nav-button menu-button">MENÚ</button>
-      </div>
-      <div class="video-banner">
-         <video git push autoplay muted loop playsinline class="video-large">
+    <!-- Estilos originales -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #111;
+            color: white;
+            text-align: center;
+        }
+
+        .galeria {
+            width: 80%;
+            margin: auto;
+            padding: 5px 0;
+        }
+
+        /* Swiper General */
+        .swiper {
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .swiper-slide video {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        /* Eliminación de la paginación */
+        .swiper-pagination {
+            display: none !important;
+        }
+
+        /* 🔥 Contorno sobre el video SOLO en TV */
+        .tv-slider .swiper-slide::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 2px solid white; /* Borde más visible */
+            border-radius: 10px;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    
+
+
+    <!-- Banner principal -->
+    <div class="video-banner">
+        <video autoplay muted loop playsinline class="video-large">
             <source src="VIDEO/BANNER_PANTALLA.mp4" type="video/mp4">
             Tu navegador no soporta la etiqueta de video.
-         </video>
-         <video git push autoplay muted loop playsinline class="video-small">
+        </video>
+        <video autoplay muted loop playsinline class="video-small">
             <source src="VIDEO/BANNER_MOVILES.mp4" type="video/mp4">
             Tu navegador no soporta la etiqueta de video.
-         </video>
-         <img src="IMG/logoanimado.gif" alt="Logo" class="logo">
-      </div>
-      <div class="primer-contenido" id="first-gallery">
-         <div class="text-box">
-            <p >VFX</p>
-         </div>
-         <div class="gallery">
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline >
-                     <source data-src="IMG/VFX/VFX (1).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
+        </video>
+        <img src="IMG/logoanimado.gif" alt="Logo" class="logo">
+    </div>
+
+    <!-- Galería VFX -->
+    <div class="galeria">
+        <h2>VFX</h2>
+        
+        <div class="swiper vfx-slider-1">
+            <div class="swiper-wrapper">
+                <script>
+                    for (let i = 1; i <= 13; i++) {
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/VERTICAL/VFX (${i}).mp4" autoplay loop muted></video></div>`);
+                    }
+                </script>
             </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (2).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
+        </div>
+
+        <div class="swiper vfx-slider-2">
+            <div class="swiper-wrapper">
+                <script>
+                    for (let i = 1; i <= 8; i++) {
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/CUADRADO/VFX (${i}).mp4" autoplay loop muted></video></div>`);
+                    }
+                </script>
             </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (3).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
+        </div>
+    </div>
+
+    <!-- Galería Animación -->
+    <div class="galeria">
+        <h2>ANIMACIÓN</h2>
+        <div class="swiper animacion-slider">
+            <div class="swiper-wrapper">
+                <script>
+                    for (let i = 1; i <= 12; i++) {
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/ANIMACION/Animacion (${i}).mp4" autoplay loop muted></video></div>`);
+                    }
+                </script>
             </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (4).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
+        </div>
+    </div>
+
+    <!-- Galería TV -->
+    <div class="galeria">
+        <h2>TV</h2>
+        <div class="swiper tv-slider">
+            <div class="swiper-wrapper">
+                <script>
+                    for (let i = 1; i <= 14; i++) {
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/TV/TV (${i}).mp4" autoplay loop muted></video></div>`);
+                    }
+                </script>
             </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (5).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (6).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (7).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (8).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source src="IMG/VFX/VFX (9).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (10).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (11).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (12).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (13).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source src="IMG/VFX/VFX (14).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (15).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (16).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (17).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/VFX/VFX (18).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>	
-         </div>
-      </div>
-      <div class="segundo-contenido" id="second-gallery">
-         <div class="text-box2">
-            <p>ANIMACIÓN</p>
-         </div>
-         <div class="gallery3">
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (1).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (2).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (3).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (4).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (5).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (6).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (7).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (8).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (9).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (10).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (11).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/ANIMACION/animacion (12).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="primer-contenido" id="tercera-gallery">
-         <div class="text-box">
-            <p>TV</p>
-         </div>
-         <div class="gallery2">
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (1).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (2).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (3).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (4).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (5).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (6).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (7).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (8).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (9).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>	
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (10).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (11).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>	
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (12).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>			 
-			<div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (13).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>	
-            <div class="image">
-               <div class="video-item">
-                  <video class="lazy" autoplay loop muted playsinline>
-                     <source data-src="IMG/TV/TV (14).mp4" type="video/mp4">
-                     Tu navegador no soporta el video HTML5.
-                  </video>
-               </div>
-            </div>				
-         </div>
-      </div>
-      <div class="segundo-contenido" id="cuarta-gallery">
+        </div>
+    </div>
+	
+	<div class="segundo-contenido" id="cuarta-gallery">
          <div class="text-box2">
             <p>El impacto de nuestro trabajo,<br>habla por sí solo</p>
             <h2><i class="fas fa-phone"></i>+57 3213207580 </h2>
@@ -418,24 +152,45 @@
             <div>
             </div>
          </div>
-         <div class="linea"></div>
-         <div class="clients-carousel">
-            <div class="carousel">
-               <div><img src="IMG/CLIENTES/logo 1.png" alt="Cliente 1"></div>
-               <div><img src="IMG/CLIENTES/logo 2.png" alt="Cliente 2"></div>
-               <div><img src="IMG/CLIENTES/logo 3.png" alt="Cliente 3"></div>
-               <div><img src="IMG/CLIENTES/logo 4.png" alt="Cliente 4"></div>
-               <div><img src="IMG/CLIENTES/logo 5.png" alt="Cliente 5"></div>
-               <div><img src="IMG/CLIENTES/logo 6.png" alt="Cliente 6"></div>
-			   <div><img src="IMG/CLIENTES/logo 7.png" alt="Cliente 6"></div>
-            </div>
-         </div>
       </div>
-	  <link rel="icon" type="image/x-icon" href="IMG/favicon.ico">
-	  <link rel="icon" type="image/png" href="IMG/favicon.png">
-	  <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.1/dist/lazyload.min.js"></script>
-      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-      <script src="script.js"></script>
-   </body>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function initSwiper(selector, defaultSlides, mobileSlides) {
+            new Swiper(selector, {
+                slidesPerView: defaultSlides,
+                spaceBetween: 20,
+                loop: true,
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                },
+                breakpoints: {
+                    0: { slidesPerView: mobileSlides }, // En móviles
+                    768: { slidesPerView: defaultSlides } // En pantallas más grandes
+                }
+            });
+        }
+
+        function loadVideos() {
+            document.querySelectorAll("video[data-src]").forEach(video => {
+                video.src = video.getAttribute("data-src");
+                video.removeAttribute("data-src");
+            });
+        }
+
+        // Inicialización de carruseles con diferentes configuraciones
+        initSwiper(".vfx-slider-1", 6, 2);
+        initSwiper(".vfx-slider-2", 6, 2);
+        initSwiper(".animacion-slider", 6, 2);
+        initSwiper(".tv-slider", 2, 1); // En móvil solo 1
+
+        // Carga diferida de videos
+        loadVideos();
+    });
+</script>
+
+</body>
 </html>
