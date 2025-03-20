@@ -156,7 +156,7 @@
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script>
+<script>
     document.addEventListener("DOMContentLoaded", function () {
         function initSwiper(selector, defaultSlides, mobileSlides) {
             new Swiper(selector, {
@@ -174,11 +174,20 @@
             });
         }
 
-        function loadVideos() {
-            document.querySelectorAll("video[data-src]").forEach(video => {
-                video.src = video.getAttribute("data-src");
-                video.removeAttribute("data-src");
-            });
+        function lazyLoadVideos() {
+            const videos = document.querySelectorAll("video[data-src]");
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        let video = entry.target;
+                        video.src = video.getAttribute("data-src");
+                        video.removeAttribute("data-src");
+                        observer.unobserve(video); // Deja de observar el video una vez cargado
+                    }
+                });
+            }, { threshold: 0.5 }); // Se carga cuando el 50% del video es visible
+
+            videos.forEach(video => observer.observe(video));
         }
 
         // Inicialización de carruseles con diferentes configuraciones
@@ -187,8 +196,8 @@
         initSwiper(".animacion-slider", 6, 2);
         initSwiper(".tv-slider", 2, 1); // En móvil solo 1
 
-        // Carga diferida de videos
-        loadVideos();
+        // Carga diferida de videos solo cuando son visibles
+        lazyLoadVideos();
     });
 </script>
 
