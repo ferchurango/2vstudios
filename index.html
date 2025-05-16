@@ -158,20 +158,26 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        // Guardamos las instancias de Swiper
+        const swipers = {};
+
         function initSwiper(selector, defaultSlides, mobileSlides) {
-            new Swiper(selector, {
+            const swiper = new Swiper(selector, {
                 slidesPerView: defaultSlides,
                 spaceBetween: 20,
                 loop: true,
                 autoplay: {
-                    delay: 3000,
+                    delay: 4000,
                     disableOnInteraction: false,
                 },
                 breakpoints: {
-                    0: { slidesPerView: mobileSlides }, // En móviles
-                    768: { slidesPerView: defaultSlides } // En pantallas más grandes
+                    0: { slidesPerView: mobileSlides },
+                    768: { slidesPerView: defaultSlides }
                 }
             });
+
+            // Guardamos la instancia para poder acceder luego
+            swipers[selector] = swiper;
         }
 
         function lazyLoadVideos() {
@@ -182,45 +188,59 @@
                         let video = entry.target;
                         video.src = video.getAttribute("data-src");
                         video.removeAttribute("data-src");
-                        observer.unobserve(video); // Deja de observar el video una vez cargado
+                        observer.unobserve(video);
                     }
                 });
-            }, { threshold: 0.5 }); // Se carga cuando el 50% del video es visible
+            }, { threshold: 0.5 });
 
             videos.forEach(video => observer.observe(video));
         }
 
-        // Inicialización de carruseles con diferentes configuraciones
+        // Inicializamos los Swipers
         initSwiper(".vfx-slider-1", 6, 2);
         initSwiper(".vfx-slider-2", 6, 2);
         initSwiper(".animacion-slider", 6, 2);
-        initSwiper(".tv-slider", 2, 1); // En móvil solo 1
+        initSwiper(".tv-slider", 2, 1);
 
-        // Carga diferida de videos solo cuando son visibles
+        // Lazy loading de videos
         lazyLoadVideos();
+
+        // Observer para pausar/reanudar autoplay de Swipers
+        const sliders = document.querySelectorAll(".swiper");
+        const observerSwiper = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const el = entry.target;
+                const swiperInstance = Object.values(swipers).find(sw => sw.el === el);
+                if (swiperInstance && swiperInstance.autoplay) {
+                    if (entry.isIntersecting) {
+                        swiperInstance.autoplay.start();
+                    } else {
+                        swiperInstance.autoplay.stop();
+                    }
+                }
+            });
+        }, { threshold: 0.5 }); // Se activa con el 50% visible
+
+        sliders.forEach(slider => observerSwiper.observe(slider));
     });
-	
-	document.addEventListener("DOMContentLoaded", function () {
-    const videos = document.querySelectorAll("video");
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.play();
-            } else {
-                entry.target.pause();
-            }
-        });
-    }, { threshold: 0.5 }); // Se activa cuando al menos el 50% del video está visible
+    // Observer para pausar/reanudar todos los videos según visibilidad
+    document.addEventListener("DOMContentLoaded", function () {
+        const videos = document.querySelectorAll("video");
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.play();
+                } else {
+                    entry.target.pause();
+                }
+            });
+        }, { threshold: 0.5 });
 
-    videos.forEach(video => observer.observe(video));
-});
-	
-	
-	
-	
-	
+        videos.forEach(video => observer.observe(video));
+    });
 </script>
+
 
 </body>
 </html>
