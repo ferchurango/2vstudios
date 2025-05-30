@@ -72,7 +72,7 @@
     <!-- Banner principal -->
     <div class="video-banner">
         <video autoplay muted loop playsinline class="video-large">
-            <source src="VIDEO/BANNER_PANTALLA.mp4" type="video/mp4">
+            <source src="VIDEO/BANNER_PANTALLA.mp4 "  type="video/mp4">
             Tu navegador no soporta la etiqueta de video.
         </video>
         <video autoplay muted loop playsinline class="video-small">
@@ -90,7 +90,7 @@
             <div class="swiper-wrapper">
                 <script>
                     for (let i = 1; i <= 15; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/VERTICAL/VFX (${i}).mp4" poster="IMG/VFX/VERTICAL/VFX (${i}).jpg" autoplay loop muted></video></div>`);
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/VERTICAL/VFX (${i}).mp4" poster="IMG/VFX/VERTICAL/VFX (${i}).jpg" autoplay loop muted playsinline></video></div>`);
                     }
                 </script>
             </div>
@@ -100,7 +100,7 @@
             <div class="swiper-wrapper">
                 <script>
                     for (let i = 1; i <= 8; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/CUADRADO/VFX (${i}).mp4" poster="IMG/VFX/CUADRADO/VFX (${i}).jpg" autoplay loop muted></video></div>`);
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/CUADRADO/VFX (${i}).mp4" poster="IMG/VFX/CUADRADO/VFX (${i}).jpg" autoplay loop muted playsinline></video></div>`);
                     }
                 </script>
             </div>
@@ -114,7 +114,7 @@
             <div class="swiper-wrapper">
                 <script>
                     for (let i = 1; i <= 12; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/ANIMACION/ANIMACION (${i}).mp4" poster="IMG/ANIMACION/ANIMACION (${i}).jpg" autoplay loop muted></video></div>`);
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/ANIMACION/ANIMACION (${i}).mp4" poster="IMG/ANIMACION/ANIMACION (${i}).jpg" autoplay loop muted playsinline></video></div>`);
                     }
                 </script>
             </div>
@@ -128,7 +128,7 @@
             <div class="swiper-wrapper">
                 <script>
                     for (let i = 1; i <= 14; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/TV/TV (${i}).mp4" poster="IMG/TV/TV (${i}).jpg" autoplay loop muted></video></div>`);
+                        document.write(`<div class="swiper-slide"><video data-src="IMG/TV/TV (${i}).mp4" poster="IMG/TV/TV (${i}).jpg" autoplay loop muted playsinline></video></div>`);
                     }
                 </script>
             </div>
@@ -158,7 +158,6 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Guardamos las instancias de Swiper
         const swipers = {};
 
         function initSwiper(selector, defaultSlides, mobileSlides) {
@@ -176,42 +175,47 @@
                 }
             });
 
-            // Guardamos la instancia para poder acceder luego
             swipers[selector] = swiper;
         }
 
-        function lazyLoadVideos() {
-            const videos = document.querySelectorAll("video[data-src]");
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        let video = entry.target;
-                        video.src = video.getAttribute("data-src");
-                        video.removeAttribute("data-src");
-                        observer.unobserve(video);
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            videos.forEach(video => observer.observe(video));
-        }
-
-        // Inicializamos los Swipers
         initSwiper(".vfx-slider-1", 6, 2);
         initSwiper(".vfx-slider-2", 6, 2);
         initSwiper(".animacion-slider", 6, 2);
         initSwiper(".tv-slider", 2, 1);
 
-        // Lazy loading de videos
-        lazyLoadVideos();
+        // Observer general para video: lazy load + play/pause
+        const videos = document.querySelectorAll("video[data-src]");
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                const video = entry.target;
 
-        // Observer para pausar/reanudar autoplay de Swipers
+                // Lazy load del src
+                if (entry.isIntersecting && video.hasAttribute("data-src")) {
+                    video.src = video.getAttribute("data-src");
+                    video.removeAttribute("data-src");
+                    video.load();
+                    video.play().catch(() => {}); // Evita errores si autoplay falla
+                }
+
+                // Play/Pause si ya está cargado
+                if (video.readyState >= 2) {
+                    if (entry.isIntersecting) {
+                        video.play().catch(() => {});
+                    } else {
+                        video.pause();
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        videos.forEach(video => observer.observe(video));
+
+        // Control de autoplay de Swipers según visibilidad
         const sliders = document.querySelectorAll(".swiper");
         const observerSwiper = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                const el = entry.target;
-                const swiperInstance = Object.values(swipers).find(sw => sw.el === el);
-                if (swiperInstance && swiperInstance.autoplay) {
+                const swiperInstance = Object.values(swipers).find(sw => sw.el === entry.target);
+                if (swiperInstance?.autoplay) {
                     if (entry.isIntersecting) {
                         swiperInstance.autoplay.start();
                     } else {
@@ -219,27 +223,12 @@
                     }
                 }
             });
-        }, { threshold: 0.5 }); // Se activa con el 50% visible
+        }, { threshold: 0.5 });
 
         sliders.forEach(slider => observerSwiper.observe(slider));
     });
-
-    // Observer para pausar/reanudar todos los videos según visibilidad
-    document.addEventListener("DOMContentLoaded", function () {
-        const videos = document.querySelectorAll("video");
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.play();
-                } else {
-                    entry.target.pause();
-                }
-            });
-        }, { threshold: 0.5 });
-
-        videos.forEach(video => observer.observe(video));
-    });
 </script>
+
 
 
 </body>
