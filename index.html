@@ -1,235 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería de Videos</title>
-
-    <!-- Estilos originales -->
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
-
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #111;
-            color: white;
-            text-align: center;
-        }
-
-        .galeria {
-            width: 80%;
-            margin: auto;
-            padding: 5px 0;
-        }
-
-        /* Swiper General */
-        .swiper {
-            width: 100%;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .swiper-slide {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .swiper-slide video {
-            width: 100%;
-            height: auto;
-            max-height: 600px;
-            object-fit: contain;
-            border-radius: 10px;
-        }
-
-        /* Eliminación de la paginación */
-        .swiper-pagination {
-            display: none !important;
-        }
-
-        /* 🔥 Contorno sobre el video SOLO en TV */
-        .tv-slider .swiper-slide::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border: 2px solid white; /* Borde más visible */
-            border-radius: 10px;
-            z-index: 2;
-            pointer-events: none;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mantenimiento</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #00ff00;
+    }
+    body {
+      display: grid;
+      place-items: center;
+    }
+    img {
+      max-width: 92vw;
+      max-height: 92vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    
-
-
-    <!-- Banner principal -->
-    <div class="video-banner">
-        <video autoplay muted loop playsinline class="video-large">
-            <source src="VIDEO/BANNER_PANTALLA.mp4 "  type="video/mp4">
-            Tu navegador no soporta la etiqueta de video.
-        </video>
-        <video autoplay muted loop playsinline class="video-small">
-            <source src="VIDEO/BANNER_MOVILES.mp4" type="video/mp4">
-            Tu navegador no soporta la etiqueta de video.
-        </video>
-        <img src="IMG/logoanimado.gif" alt="Logo" class="logo">
-    </div>
-
-    <!-- Galería VFX -->
-    <div class="galeria">
-        <h2>VFX</h2>
-        
-        <div class="swiper vfx-slider-1">
-            <div class="swiper-wrapper">
-                <script>
-                    for (let i = 1; i <= 16; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/VERTICAL/VFX (${i}).mp4" poster="IMG/VFX/VERTICAL/VFX (${i}).jpg" autoplay loop muted playsinline></video></div>`);
-                    }
-                </script>
-            </div>
-        </div>
-
-        <div class="swiper vfx-slider-2">
-            <div class="swiper-wrapper">
-                <script>
-                    for (let i = 1; i <= 8; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/VFX/CUADRADO/VFX (${i}).mp4" poster="IMG/VFX/CUADRADO/VFX (${i}).jpg" autoplay loop muted playsinline></video></div>`);
-                    }
-                </script>
-            </div>
-        </div>
-    </div>
-
-    <!-- Galería Animación -->
-    <div class="galeria">
-        <h2>ANIMACIÓN</h2>
-        <div class="swiper animacion-slider">
-            <div class="swiper-wrapper">
-                <script>
-                    for (let i = 1; i <= 12; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/ANIMACION/ANIMACION (${i}).mp4" poster="IMG/ANIMACION/ANIMACION (${i}).jpg" autoplay loop muted playsinline></video></div>`);
-                    }
-                </script>
-            </div>
-        </div>
-    </div>
-
-    <!-- Galería TV -->
-    <div class="galeria">
-        <h2>TV</h2>
-        <div class="swiper tv-slider">
-            <div class="swiper-wrapper">
-                <script>
-                    for (let i = 1; i <= 14; i++) {
-                        document.write(`<div class="swiper-slide"><video data-src="IMG/TV/TV (${i}).mp4" poster="IMG/TV/TV (${i}).jpg" autoplay loop muted playsinline></video></div>`);
-                    }
-                </script>
-            </div>
-        </div>
-    </div>
-	
-	<div class="segundo-contenido" id="cuarta-gallery">
-         <div class="text-box2">
-            <p>El impacto de nuestro trabajo,<br>habla por sí solo</p>
-            <h2><i class="fas fa-phone"></i>+57 3213207580 </h2>
-            <h2><i class="fas fa-phone"></i>+57 3173795417 </h2>
-			 
-			 
-            <div class="QRCODE">    		
-               <a href="https://wa.me/+573213207580" target="_blank">
-        		<img src="IMG/QR.png" alt="Código QR">
-    			</a>
-				
-            </div>
-				 <h3>Clic o escanea el código QR para más información</h3>
-            <div>
-            </div>
-         </div>
-      </div>
-
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const swipers = {};
-
-        function initSwiper(selector, defaultSlides, mobileSlides) {
-            const swiper = new Swiper(selector, {
-                slidesPerView: defaultSlides,
-                spaceBetween: 20,
-                loop: true,
-                autoplay: {
-                    delay: 4000,
-                    disableOnInteraction: false,
-                },
-                breakpoints: {
-                    0: { slidesPerView: mobileSlides },
-                    768: { slidesPerView: defaultSlides }
-                }
-            });
-
-            swipers[selector] = swiper;
-        }
-
-        initSwiper(".vfx-slider-1", 6, 2);
-        initSwiper(".vfx-slider-2", 6, 2);
-        initSwiper(".animacion-slider", 6, 2);
-        initSwiper(".tv-slider", 2, 1);
-
-        // Observer general para video: lazy load + play/pause
-        const videos = document.querySelectorAll("video[data-src]");
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                const video = entry.target;
-
-                // Lazy load del src
-                if (entry.isIntersecting && video.hasAttribute("data-src")) {
-                    video.src = video.getAttribute("data-src");
-                    video.removeAttribute("data-src");
-                    video.load();
-                    video.play().catch(() => {}); // Evita errores si autoplay falla
-                }
-
-                // Play/Pause si ya está cargado
-                if (video.readyState >= 2) {
-                    if (entry.isIntersecting) {
-                        video.play().catch(() => {});
-                    } else {
-                        video.pause();
-                    }
-                }
-            });
-        }, { threshold: 0.5 });
-
-        videos.forEach(video => observer.observe(video));
-
-        // Control de autoplay de Swipers según visibilidad
-        const sliders = document.querySelectorAll(".swiper");
-        const observerSwiper = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const swiperInstance = Object.values(swipers).find(sw => sw.el === entry.target);
-                if (swiperInstance?.autoplay) {
-                    if (entry.isIntersecting) {
-                        swiperInstance.autoplay.start();
-                    } else {
-                        swiperInstance.autoplay.stop();
-                    }
-                }
-            });
-        }, { threshold: 0.5 });
-
-        sliders.forEach(slider => observerSwiper.observe(slider));
-    });
-</script>
-
-
-
+  <img src="img/mantenimiento.jpg" alt="Sitio en mantenimiento" />
 </body>
 </html>
