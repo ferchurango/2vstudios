@@ -54,7 +54,7 @@ button {
     position: relative;
     z-index: 1;
     width: 100%;
-    padding: calc(var(--gif-height) + env(safe-area-inset-top,0px) + .8rem) 0 calc(var(--gif-height) + env(safe-area-inset-bottom,0px) + 1.2rem)
+
 }
 
 .story-section {
