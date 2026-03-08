@@ -1,5 +1,5 @@
 const EVENT_DATE = "2026-04-26T18:00:00-05:00";
-const WHATSAPP_NUMBER = "573213207580";
+const WHATSAPP_NUMBER = "573053499142";
 
 const daysEl = document.getElementById("days");
 const hoursEl = document.getElementById("hours");
@@ -130,15 +130,15 @@ function initParticles() {
     canvas.style.height = `${window.innerHeight}px`;
     particles.length = 0;
 
-    const count = Math.max(24, Math.floor(window.innerWidth / 18));
+    const count = Math.max(60, Math.floor(window.innerWidth / 18) * 3);
     for (let i = 0; i < count; i += 1) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        r: Math.random() * 2.2 + 0.8,
-        vx: (Math.random() - 0.5) * 0.14,
-        vy: Math.random() * 0.25 + 0.08,
-        a: Math.random() * 0.45 + 0.15,
+        r: Math.random() * 5.0 + 1.0,
+        vx: (Math.random() - 1.5) * 0.14,
+        vy: Math.random() * 1.25 + 0.08,
+        a: Math.random() * 1.45 + 0.15,
       });
     }
   }
@@ -155,9 +155,9 @@ function initParticles() {
       if (p.x > width + 8) p.x = -8;
 
       ctx.beginPath();
-      ctx.fillStyle = `rgba(255, 234, 241, ${p.a})`;
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
+ctx.fillStyle = `rgba(255, 234, 241, ${p.a})`;
+ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+ctx.fill();
     });
 
     requestAnimationFrame(draw);
@@ -180,7 +180,7 @@ function initForm() {
     const guestMessage = document.getElementById("guestMessage").value.trim();
 
     const lines = [
-      "Hola, quiero confirmar asistencia para los 15 anos.",
+      "Hola, quiero confirmar asistencia para los 15 anos de Danna.",
       `Nombre: ${guestName || "-"}`,
       `Asistentes: ${guestCount || "1"}`,
       `Celular: ${guestPhone || "-"}`,
