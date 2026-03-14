@@ -61,7 +61,7 @@ button {
     position: relative;
     display: grid;
     place-items: center;
-    padding: clamp(2rem,7vw,3.8rem) 0
+    padding: clamp(2rem,7vw,3.8rem) 0;
 }
 
 .story-card {
@@ -97,7 +97,7 @@ button {
     background-position: center;
     transform: translate3d(0,var(--parallax-y,0px),0) scale(1.09);
     will-change: transform;
-    filter: saturate(1.02)
+    filter: saturate(1.2);
 }
 
 .card-shade {
@@ -285,6 +285,12 @@ button {
     height: clamp(66px,18vw,92px);
     margin-bottom: .4rem;
     filter: drop-shadow(0 12px 20px rgba(0,0,0,.2))
+}
+.section-icon2 {
+    width: clamp(150px,18vw,92px);
+    height: clamp(150px,18vw,92px);
+    margin-bottom: 4rem;
+    filter: drop-shadow(0 12px 20px rgba(0,0,0,.2));
 }
 
 .calendar-month {
@@ -501,6 +507,38 @@ button {
     }
 }
 
+.map-link{
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+}
 
+
+
+.map-link{
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  z-index: 9999;
+}
+
+#Lugar .centered-message{
+  pointer-events: none;
+}
+
+.section-icon2{
+  animation: latidoMap 1.2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes latidoMap{
+  0%, 100%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.1);
+  }
+}
 
 

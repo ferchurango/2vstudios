@@ -1,5 +1,5 @@
-const EVENT_DATE = "2026-04-26T18:00:00-05:00";
-const WHATSAPP_NUMBER = "573053499142";
+const EVENT_DATE = "2026-04-11T18:00:00-05:00";
+const WHATSAPP_NUMBER = "573105520419";
 
 const daysEl = document.getElementById("days");
 const hoursEl = document.getElementById("hours");
