@@ -422,7 +422,7 @@ button {
     z-index: 25;
     display: inline-flex;
     align-items: center;
-    gap: .55rem;
+    /* gap: .55rem; /* 
     /* padding: .25rem .25rem; */
     border-radius: 999px;
     background: rgb(255 255 255 / 28%);
@@ -433,8 +433,8 @@ button {
 }
 
 .music-toggle img {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
 }
 
 .music-toggle span {
@@ -442,6 +442,27 @@ button {
     letter-spacing: .14em;
     text-transform: uppercase
 }
+
+@media (max-width: 389px) {
+  .music-toggle {
+    padding: .38rem;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .music-toggle img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .music-toggle span {
+    display: none;
+  }
+}
+
 
 .fixed-gif {
     position: fixed;
