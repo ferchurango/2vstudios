@@ -287,8 +287,8 @@ button {
     filter: drop-shadow(0 12px 20px rgba(0,0,0,.2))
 }
 .section-icon2 {
-    width: clamp(150px,18vw,92px);
-    height: clamp(150px,18vw,92px);
+    width: clamp(280px,18vw,92px);
+    height: clamp(10px,18vw,92px);
     margin-bottom: 4rem;
     filter: drop-shadow(0 12px 20px rgba(0,0,0,.2));
 }
@@ -418,14 +418,14 @@ button {
 .music-toggle {
     position: fixed;
     right: max(.9rem,env(safe-area-inset-right,0px) + .4rem);
-    top: calc(var(--gif-height) + env(safe-area-inset-top,0px) + .6rem);
+    top: max(.45rem, env(safe-area-inset-top,0px) + 1.2rem);
     z-index: 25;
     display: inline-flex;
     align-items: center;
     gap: .55rem;
-    padding: .68rem .85rem;
+    /* padding: .25rem .25rem; */
     border-radius: 999px;
-    background: rgba(28,11,20,.68);
+    background: rgb(255 255 255 / 28%);
     color: var(--cream);
     border: 1px solid rgba(255,244,247,.18);
     backdrop-filter: blur(12px);
@@ -433,8 +433,8 @@ button {
 }
 
 .music-toggle img {
-    width: 32px;
-    height: 32px
+    width: 70px;
+    height: 70px;
 }
 
 .music-toggle span {
@@ -549,4 +549,32 @@ button {
   object-fit: cover;
   object-position: center;
   pointer-events: none;
+}
+
+.card-video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-overlay-image{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-shade{
+  z-index: 2;
+}
+
+.card-content{
+  z-index: 3;
 }
