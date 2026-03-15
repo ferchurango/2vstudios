@@ -287,7 +287,7 @@ button {
     filter: drop-shadow(0 12px 20px rgba(0,0,0,.2))
 }
 .section-icon2 {
-    width: clamp(280px,18vw,92px);
+    width: clamp(200px,18vw,92px);
     height: clamp(10px,18vw,92px);
     margin-bottom: 4rem;
     filter: drop-shadow(0 12px 20px rgba(0,0,0,.2));
