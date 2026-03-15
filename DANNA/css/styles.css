@@ -418,7 +418,7 @@ button {
 .music-toggle {
     position: fixed;
     right: max(.9rem,env(safe-area-inset-right,0px) + .4rem);
-    top: max(.45rem, env(safe-area-inset-top,0px) + 1.2rem);
+    top: max(.45rem, env(safe-area-inset-top,0px) + 0.5rem);
     z-index: 25;
     display: inline-flex;
     align-items: center;
