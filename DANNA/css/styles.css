@@ -445,22 +445,32 @@ button {
 
 @media (max-width: 389px) {
   .music-toggle {
-    padding: .38rem;
     width: 70px;
     height: 70px;
+    padding: 0;
     border-radius: 50%;
     justify-content: center;
+    align-items: center;
     gap: 0;
   }
 
   .music-toggle img {
-    width: 70px;
-    height: 70px;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    display: block;
   }
 
   .music-toggle span {
     display: none;
   }
+}
+
+.music-toggle img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
 }
 
 
