@@ -446,16 +446,16 @@ button {
 @media (max-width: 389px) {
   .music-toggle {
     padding: .38rem;
-    width: 42px;
-    height: 42px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     justify-content: center;
     gap: 0;
   }
 
   .music-toggle img {
-    width: 22px;
-    height: 22px;
+    width: 70px;
+    height: 70px;
   }
 
   .music-toggle span {
