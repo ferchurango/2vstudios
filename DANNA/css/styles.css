@@ -167,7 +167,7 @@ button {
     letter-spacing: .04em
 	
   color: #fff; /* Color del texto principal */
-  text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff; /* Efecto neón */
+  text-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #fff; /* Efecto neÃ³n */
 }
 
 		
@@ -288,7 +288,7 @@ button {
 }
 .section-icon2 {
     width: clamp(200px,18vw,92px);
-    height: clamp(10px,18vw,92px);
+    /* height: clamp(10px,18vw,92px); */
     margin-bottom: 4rem;
     filter: drop-shadow(0 12px 20px rgba(0,0,0,.2));
 }
